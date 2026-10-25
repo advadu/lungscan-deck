@@ -108,13 +108,13 @@ export default function Training() {
   const target = useRef({ i: 0, at: 0 });
   const go = (i: number, smooth = true) => {
     target.current = { i, at: Date.now() };
-    document.getElementById(pageId(tab, i))?.scrollIntoView({ behavior: smooth ? 'smooth' : 'auto' });
+    document.getElementById(pageId(tab, i))?.scrollIntoView({ behavior: smooth ? 'smooth' : 'auto', block: 'start' });
   };
 
   // On load and on a tab switch, open at the page last seen in that tab.
   useEffect(() => {
     if (!loaded) return;
-    requestAnimationFrame(() => go(tab === 'learn' ? lesson : test, false));
+    if (tab === 'learn') requestAnimationFrame(() => go(lesson, false));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [tab, loaded]);
 
@@ -138,7 +138,7 @@ export default function Training() {
   // Arrow keys move a page at a time, like the presentation.
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
-      if ((e.target as HTMLElement).closest('textarea, input, select')) return;
+      if (tab !== 'learn' || (e.target as HTMLElement).closest('textarea, input, select')) return;
       const i = target.current.i;
       const n = tab === 'learn' ? LESSONS.length : ALL.length;
       if (['ArrowDown', 'ArrowRight', 'PageDown'].includes(e.key) && i < n - 1) { e.preventDefault(); go(i + 1); }
@@ -155,10 +155,12 @@ export default function Training() {
   }, [results]);
   const done = counts.pass + counts.fail + counts.blocked;
 
-  const mark = (i: number, s: Status) => {
-    setResults((r) => ({ ...r, [ALL[i].id]: s }));
-    if (s === 'pass' && i < ALL.length - 1) go(i + 1);
-  };
+  // Clicking the chosen result again clears it.
+  const mark = (id: string, s: Status) => setResults((r) => {
+    const next = { ...r };
+    if (next[id] === s) delete next[id]; else next[id] = s;
+    return next;
+  });
   const copy = async () => {
     const lines = [`LungScan Research test results: ${counts.pass} pass, ${counts.fail} fail, ${counts.blocked} blocked, ${ALL.length - done} not run`];
     ALL.forEach((c) => {
@@ -166,7 +168,7 @@ export default function Training() {
     });
     try { await navigator.clipboard.writeText(lines.join('\n')); setCopied(true); setTimeout(() => setCopied(false), 2000); } catch { /* clipboard blocked */ }
   };
-  const reset = () => { setResults({}); setNotes({}); go(0); };
+  const reset = () => { setResults({}); setNotes({}); mainRef.current?.scrollTo({ top: 0 }); };
 
   const rail = tab === 'learn' ? (
     <div className="space-y-5">
@@ -202,7 +204,7 @@ export default function Training() {
             const i = ALL.indexOf(c);
             const s = results[c.id];
             return (
-              <button key={c.id} type="button" onClick={() => go(i)}
+              <button key={c.id} type="button" onClick={() => { setTest(i); go(i); }}
                 className={`flex w-full items-center gap-2 rounded-lg px-3 py-1.5 text-left text-sm ${i === test ? 'bg-[var(--r-accent)] font-semibold text-white' : 'hover:bg-[var(--r-side-2)]'}`}>
                 <span className={`h-2.5 w-2.5 shrink-0 rounded-full ${s ? STATUS[s].dot : 'border border-[#5A626C]'}`} />
                 <span className="font-mono text-xs opacity-70">{c.id}</span>
@@ -266,60 +268,73 @@ export default function Training() {
     );
   });
 
-  const tests = ALL.map((T, i) => (
-    <Page key={T.id} id={`test-${T.id}`}>
-      <div className="mx-auto max-w-4xl space-y-5">
+  const resultButtons = (id: string) => (
+    <div className="flex flex-wrap gap-1" role="group" aria-label={`Result for ${id}`}>
+      {(Object.keys(STATUS) as Status[]).map((k) => (
+        <button key={k} type="button" aria-pressed={results[id] === k} onClick={() => mark(id, k)}
+          className={`rounded-md border px-2 py-1 text-xs font-semibold ${results[id] === k ? STATUS[k].chip : 'border-[var(--r-line)] bg-[var(--r-card)] text-[var(--r-faint)] hover:text-[var(--r-ink)]'}`}>
+          {STATUS[k].label}
+        </button>
+      ))}
+    </div>
+  );
+
+  // All tests in one table: steps, expected result, result and notes per row, grouped by task.
+  const COLS = 'lg:grid-cols-[64px_minmax(0,1fr)_minmax(0,1.5fr)_minmax(0,1.3fr)_188px]';
+  const tests = (
+    <div className="mx-auto max-w-[1400px] px-4 py-6 lg:px-8">
+      <div className="mb-5 flex flex-wrap items-end justify-between gap-4">
         <div>
-          <div className="text-xs font-semibold uppercase tracking-wider text-[var(--r-coral)]">
-            {GROUPS.find((g) => g.cases.includes(T))?.title} · test {i + 1} of {ALL.length}
-          </div>
-          <h2 className="mt-1.5 flex flex-wrap items-center gap-3 text-2xl font-bold tracking-tight lg:text-3xl">
-            <span className="font-mono text-xl text-[var(--r-faint)]">{T.id}</span>{T.title}
-          </h2>
-          <div className="mt-2 flex flex-wrap items-center gap-2">
-            <RoleChip role={T.role} />
-            {results[T.id] && <span className={`rounded-md border px-2 py-0.5 text-xs font-semibold ${STATUS[results[T.id]].chip}`}>{STATUS[results[T.id]].label}</span>}
-          </div>
-        </div>
-        <div className="grid gap-4 md:grid-cols-2">
-          <div className="rounded-xl border border-[var(--r-line)] bg-[var(--r-card)] p-4">
-            <Label>Steps</Label>
-            <Numbered items={T.steps} />
-          </div>
-          <div className="rounded-xl border border-[var(--r-line)] bg-[var(--r-card)] p-4">
-            <Label>Expected result</Label>
-            <p className="text-[14px] leading-relaxed text-[var(--r-dim)]">{T.expect}</p>
-          </div>
-        </div>
-        <div className="rounded-xl border border-[var(--r-line)] bg-[var(--r-card)] p-4">
-          <Label>Notes (optional)</Label>
-          <textarea value={notes[T.id] || ''} onChange={(e) => setNotes((m) => ({ ...m, [T.id]: e.target.value }))} rows={2}
-            placeholder="What you saw, the patient ID, anything unexpected"
-            className="w-full rounded-lg border border-[var(--r-line)] bg-[var(--r-bg)] px-3 py-2 text-[14px] outline-none focus:border-[var(--r-accent)]" />
+          <div className="text-xs font-semibold uppercase tracking-wider text-[var(--r-coral)]">Acceptance tests</div>
+          <h2 className="mt-1 text-2xl font-bold tracking-tight lg:text-3xl">{ALL.length} tests, grouped by task</h2>
+          <p className="mt-1 text-sm text-[var(--r-dim)]">Run the tests for your role, mark each one, add a note when something is off, and send the results with Copy results. Marks are kept in this browser only.</p>
         </div>
         <div className="flex flex-wrap items-center gap-2">
-          <button type="button" onClick={() => mark(i, 'pass')} className="inline-flex items-center gap-1.5 rounded-lg bg-[var(--r-accent)] px-4 py-2.5 text-sm font-semibold text-white hover:opacity-90">
-            <Check size={16} /> Pass
+          <span className="text-sm text-[var(--r-dim)]"><b className="text-[var(--r-ink)]">{done} of {ALL.length}</b> run · <span className="text-[var(--r-pass)]">{counts.pass} pass</span> · <span className="text-[var(--r-fail)]">{counts.fail} fail</span> · <span className="text-[var(--r-block)]">{counts.blocked} blocked</span></span>
+          <button type="button" onClick={copy} className="inline-flex items-center gap-1.5 rounded-lg bg-[var(--r-accent)] px-3 py-2 text-sm font-semibold text-white hover:opacity-90">
+            {copied ? <CheckCircle2 size={15} /> : <ClipboardCopy size={15} />}{copied ? 'Copied' : 'Copy results'}
           </button>
-          <button type="button" onClick={() => mark(i, 'fail')} className={`rounded-lg border px-4 py-2.5 text-sm font-semibold ${results[T.id] === 'fail' ? STATUS.fail.chip : 'border-[var(--r-line)] bg-[var(--r-card)] text-[var(--r-dim)]'}`}>Fail</button>
-          <button type="button" onClick={() => mark(i, 'blocked')} className={`rounded-lg border px-4 py-2.5 text-sm font-semibold ${results[T.id] === 'blocked' ? STATUS.blocked.chip : 'border-[var(--r-line)] bg-[var(--r-card)] text-[var(--r-dim)]'}`}>Blocked</button>
-          <span className="text-sm text-[var(--r-faint)]">Pass moves on to the next test; or scroll.</span>
         </div>
-        {i === ALL.length - 1 && (
-          <div className="rounded-xl bg-[var(--r-side)] p-5 text-white">
-            <div className="text-lg font-semibold">That's all {ALL.length} tests</div>
-            <p className="mt-1 text-sm text-[var(--r-side-text)]">Send the results back with Copy results. Marks and notes are kept in this browser only.</p>
-            <div className="mt-3 flex flex-wrap gap-2">
-              <button type="button" onClick={copy} className="inline-flex items-center gap-1.5 rounded-lg bg-white px-3 py-2 text-sm font-semibold text-[var(--r-ink)]">
-                {copied ? <CheckCircle2 size={15} /> : <ClipboardCopy size={15} />}{copied ? 'Copied' : 'Copy results'}
-              </button>
-              <button type="button" onClick={() => window.print()} className="inline-flex items-center gap-1.5 rounded-lg border border-[#3A424C] px-3 py-2 text-sm font-semibold"><Printer size={15} />Print</button>
-            </div>
-          </div>
-        )}
       </div>
-    </Page>
-  ));
+
+      <div className="overflow-clip rounded-xl border border-[var(--r-line)] bg-[var(--r-card)]">
+        <div className={`sticky top-0 z-10 hidden gap-4 border-b border-[var(--r-line)] bg-[#F6F7F9] px-4 py-2.5 text-xs font-semibold uppercase tracking-wider text-[var(--r-faint)] lg:grid ${COLS}`}>
+          <div>ID</div><div>Test</div><div>Steps</div><div>Expected result</div><div>Result and notes</div>
+        </div>
+        {GROUPS.map((g) => (
+          <div key={g.title}>
+            <div className="border-b border-[var(--r-line)] bg-[var(--r-bg)] px-4 py-2 text-sm font-semibold">
+              {g.title} <span className="font-normal text-[var(--r-faint)]">· {g.cases.filter((c) => results[c.id]).length} of {g.cases.length} run</span>
+            </div>
+            {g.cases.map((T) => {
+              const i = ALL.indexOf(T);
+              return (
+                <div key={T.id} id={`test-${T.id}`}
+                  className={`grid scroll-mt-12 gap-3 border-b border-[var(--r-line)] px-4 py-3.5 text-[14px] leading-relaxed last:border-0 lg:gap-4 ${COLS} ${i === test ? 'bg-[#F7F8FF]' : ''}`}>
+                  <div className="font-mono text-sm font-semibold text-[var(--r-faint)]">{T.id}</div>
+                  <div>
+                    <div className="font-semibold">{T.title}</div>
+                    <div className="mt-1"><RoleChip role={T.role} /></div>
+                  </div>
+                  <div className="text-[var(--r-dim)]"><Numbered items={T.steps} /></div>
+                  <div className="text-[var(--r-dim)]">
+                    <span className="mb-1 block text-xs font-semibold uppercase tracking-wider text-[var(--r-faint)] lg:hidden">Expected</span>
+                    {T.expect}
+                  </div>
+                  <div className="space-y-2">
+                    {resultButtons(T.id)}
+                    <textarea value={notes[T.id] || ''} onChange={(e) => setNotes((m) => ({ ...m, [T.id]: e.target.value }))} rows={2}
+                      placeholder="Notes" aria-label={`Notes for ${T.id}`}
+                      className="w-full rounded-md border border-[var(--r-line)] bg-[var(--r-bg)] px-2 py-1.5 text-[13px] outline-none focus:border-[var(--r-accent)]" />
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        ))}
+      </div>
+    </div>
+  );
 
   return (
     <>
@@ -353,7 +368,7 @@ export default function Training() {
 
       <div className="flex min-h-0 flex-1">
         <aside className="hidden w-72 shrink-0 overflow-y-auto bg-[var(--r-side)] py-4 pr-2 pl-2 text-[var(--r-side-text)] lg:block">{rail}</aside>
-        <main ref={mainRef} key={tab} className="min-w-0 flex-1 overflow-y-auto lg:snap-y lg:snap-mandatory">
+        <main ref={mainRef} key={tab} className={`min-w-0 flex-1 overflow-y-auto ${tab === 'learn' ? 'lg:snap-y lg:snap-mandatory' : ''}`}>
           {tab === 'learn' ? lessons : tests}
         </main>
       </div>

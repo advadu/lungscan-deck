@@ -30,7 +30,7 @@ export const GROUPS: { title: string; cases: Case[] }[] = [
     cases: [
       { id: 'T11', role: 'Reviewer', title: 'Ground-glass tumor', steps: [<>Open <b>RIDER-2541949645</b> and outline its tumor.</>, 'Click a second time at a slightly different spot.'], expect: 'The outline may differ between clicks: this is a known weakness. Correct it with the brush until it matches what you see.' },
       { id: 'T12', role: 'Reviewer', title: 'Tumor touching the mediastinum', steps: [<>Open <b>RIDER-2073083717</b> and outline its tumor.</>, <>Trim the leak with the 3D <b>Erase</b> brush.</>], expect: 'The first outline leaks into the mediastinum (known failure). After trimming, the volume is plausible and the edit is recorded.' },
-      { id: 'T13', role: 'Reviewer', title: 'Spiculated tumor', steps: [<>Open <b>RIDER-1760553574</b> and outline its tumor.</>], expect: 'Check whether the spikes are included as you would include them. Note any difference in the comments.' },
+      { id: 'T13', role: 'Reviewer', title: 'Spiculated tumor', steps: [<>Open <b>RIDER-1760553574</b> and outline its tumor.</>], expect: 'Check whether the spikes are included as you would include them. Note any difference in the notes.' },
     ],
   },
   {
