@@ -5,7 +5,7 @@ import { Reveal } from '../components/ui';
 const LINKS = [
   ['Live tool', 'lungscan-research.base44.app', 'https://lungscan-research.base44.app'],
   ['Source', 'github.com/advadu/lungscan-research', 'https://github.com/advadu/lungscan-research'],
-  ['How to use it', 'Step-by-step guide', 'https://claude.ai/artifact/DYd3BpTU1J44qk8WUfUE6m'],
+  ['How to use it', 'Step-by-step guide', './guide.html'],
 ];
 
 export default function Closing() {

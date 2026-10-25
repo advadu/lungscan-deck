@@ -25,7 +25,7 @@ const REFS: { icon: LucideIcon; title: string; body: ReactNode }[] = [
   {
     icon: BookOpen,
     title: 'How to use it',
-    body: <><Link href="https://claude.ai/artifact/DYd3BpTU1J44qk8WUfUE6m">Step-by-step guide</Link>: every page, with screenshots and things to try.</>,
+    body: <><Link href="./guide.html">Step-by-step guide</Link>: every page, with screenshots and things to try.</>,
   },
   {
     icon: Code2,
