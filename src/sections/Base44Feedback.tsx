@@ -15,6 +15,7 @@ export default function Base44Feedback() {
             [<>{c('base44 exec')} needs Deno and a reachable npm registry</>, 'Blocked on a corporate network until VPN', "Bundle the SDK, or fall back to the project's node_modules"],
             ['App MCP hidden by workspace Governance, with no hint in the dashboard', 'Looked like a missing feature', 'Show the item disabled, with who can turn it on'],
             ['Local backend wipes all data on any entity change; no transactions or bulk update', 'Re-seeding during development; manual consistency checks', 'Keep data across schema changes; add transactions'],
+            [<>{c('base44 agents push')} replaces every agent on the app with the local files</>, 'An agent made in the editor is deleted unless pulled first', 'Push one agent at a time, or warn before deleting'],
           ]}
         />
       </Reveal>

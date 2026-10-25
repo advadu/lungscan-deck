@@ -45,7 +45,7 @@ export default function Hero() {
             </div>
           ))}
         </motion.div>
-        <p className="mt-10 text-sm text-[var(--color-text-faint)]">For research use only. No clinical claims.</p>
+        <p className="mt-10 text-sm text-[var(--color-text-faint)]">Adva Dubovi Avni · October 2026 · For research use only. No clinical claims.</p>
       </div>
     </Section>
   );

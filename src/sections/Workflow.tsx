@@ -7,7 +7,7 @@ const STEPS = [
   'Click a suggestion or a tumor. The tool outlines it in 3D.',
   'Correct with brush, Grow, Shrink, Clean up. The server re-measures.',
   'On a follow-up, the other scan follows the tumor and suggests the match.',
-  "Sign off, go to the next scan. Export the lab's 18 columns.",
+  "A quality check, then sign off and go to the next scan. Export the lab's 18 columns.",
 ];
 
 export default function Workflow() {
@@ -23,7 +23,7 @@ export default function Workflow() {
       </Reveal>
       <Reveal delay={0.1} className="mx-auto mt-6 grid w-full max-w-4xl gap-5 md:grid-cols-2">
         <Shot src="dashboard.jpg" label="Dashboard" alt="Dashboard: library progress, Open next scan, the queue and sign-offs per day" />
-        <Shot src="open-scans.jpg" label="Open scans" alt="Open scans: every scan not signed off, in the order they come up" />
+        <Shot src="backlog.jpg" label="Backlog" alt="Backlog: every scan not signed off, in the order they come up" />
       </Reveal>
     </Section>
   );

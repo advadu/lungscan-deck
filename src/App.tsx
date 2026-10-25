@@ -1,5 +1,9 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import Hero from './sections/Hero';
+import References from './sections/References';
+import QualityCheck from './sections/QualityCheck';
+import Assistant from './sections/Assistant';
+import LabAdmin from './sections/LabAdmin';
 import Problem from './sections/Problem';
 import Discovery from './sections/Discovery';
 import Workflow from './sections/Workflow';
@@ -18,15 +22,19 @@ import ProgressDots from './components/ProgressDots';
 
 const SECTIONS = [
   { id: 'hero', label: 'Intro' },
+  { id: 'references', label: 'Deliverables' },
   { id: 'problem', label: 'The problem' },
   { id: 'discovery', label: 'Discovery' },
   { id: 'workflow', label: 'The workflow' },
   { id: 'scanner', label: 'The scanner' },
   { id: 'compare', label: 'Comparing scans' },
+  { id: 'quality-check', label: 'Quality check' },
+  { id: 'output', label: 'Output' },
+  { id: 'assistant', label: 'Assistant' },
+  { id: 'lab-admin', label: 'Lab settings' },
   { id: 'quality', label: 'Quality' },
   { id: 'failures', label: 'What fails' },
   { id: 'time-saved', label: 'Time saved' },
-  { id: 'output', label: 'Output' },
   { id: 'architecture', label: 'Architecture' },
   { id: 'field-fix', label: 'Found in the field' },
   { id: 'base44-feedback', label: 'Base44 feedback' },
@@ -101,15 +109,19 @@ export default function App() {
         className="h-screen snap-y snap-mandatory overflow-y-scroll scroll-smooth"
       >
         <Hero />
+        <References />
         <Problem />
         <Discovery />
         <Workflow />
         <Scanner />
         <Compare />
+        <QualityCheck />
+        <Output />
+        <Assistant />
+        <LabAdmin />
         <Quality />
         <Failures />
         <TimeSaved />
-        <Output />
         <Architecture />
         <FieldFix />
         <Base44Feedback />

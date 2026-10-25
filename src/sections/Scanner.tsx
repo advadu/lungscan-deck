@@ -16,6 +16,7 @@ export default function Scanner() {
               <><b>Correction tools:</b> 2D and 3D brush, Grow, Shrink, Clean up, re-outline at another sensitivity.</>,
               <><b>Server-authoritative:</b> the browser proposes an outline; the server checks it and measures it on the scan's own geometry.</>,
               <><b>Every change is audited:</b> what the tool proposed and what the reviewer changed, with name and time.</>,
+              <><b>Tumor you can't outline:</b> a card where the reviewer types the measurements by hand.</>,
             ]}
           />
         </Reveal>

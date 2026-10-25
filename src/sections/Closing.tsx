@@ -5,6 +5,7 @@ import { Reveal } from '../components/ui';
 const LINKS = [
   ['Live tool', 'lungscan-research.base44.app', 'https://lungscan-research.base44.app'],
   ['Source', 'github.com/advadu/lungscan-research', 'https://github.com/advadu/lungscan-research'],
+  ['How to use it', 'Step-by-step guide', 'https://claude.ai/artifact/DYd3BpTU1J44qk8WUfUE6m'],
 ];
 
 export default function Closing() {
@@ -13,7 +14,7 @@ export default function Closing() {
       <div className="absolute inset-0 dot-grid opacity-30" />
       <Reveal className="relative flex flex-1 flex-col justify-center">
         <h2 className="text-5xl font-bold tracking-tight md:text-7xl">Questions?</h2>
-        <div className="mt-10 grid gap-6 md:grid-cols-3">
+        <div className="mt-10 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
           {LINKS.map(([k, label, href]) => (
             <div key={k}>
               <div className="font-semibold">{k}</div>

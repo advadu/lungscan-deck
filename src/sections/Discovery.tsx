@@ -8,7 +8,7 @@ const DECISIONS = [
   ['Suggestions', 'Kept; Daniel decides'],
   ['Assignment', 'Manual, simple worklist'],
   ['Notifications', 'Weekly email to Naomi; no alerts'],
-  ['AI assistants', 'Not now'],
+  ['Outside AI assistants (MCP)', 'Not now'],
 ];
 
 export default function Discovery() {
