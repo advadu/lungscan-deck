@@ -101,16 +101,16 @@ export const LESSONS: Lesson[] = [
     shots: [{ src: 'scanner-draft.jpg', label: 'Scanner', alt: 'A tumor outlined from a suggestion, with its measurements in the New tumor card' }],
     what: <>From a click to a saved measurement. The tool proposes the outline; you check it, correct it and save it.</>,
     how: [
-      <><b>Find the tumor:</b> click one of the <b>System suggestions</b> (the 3 most likely tumors of 4 mm or more, with their size and image number), or click a tumor on the image.</>,
-      <><b>Check the outline</b> on a few slices. The New tumor card already shows the long axis, short axis, volume and the image where it's longest.</>,
-      <><b>Correct it if needed:</b> Erase removes, Add adds (2D on this slice, or 3D across slices), Grow and Shrink move the edge, Clean up drops loose fragments, and Sensitivity outlines it again. Undo reverses a step.</>,
+      <><b>Find the tumor:</b> click one of the <b>System suggestions</b> (the 3 most likely tumors of 4 mm or more), or click a tumor on the image.</>,
+      <><b>Check the outline</b> on a few slices. The New tumor card already shows its axes and volume.</>,
+      <><b>Correct it if needed:</b> Erase and Add brushes (2D, or 3D across slices), Grow, Shrink, Clean up (drops loose fragments) or Sensitivity. Undo reverses a step.</>,
       <><b>Fill in</b> lobe, type (solid, part-solid, ground-glass), match to prior (follow-ups only) and, for part-solid tumors, the solid component. Notes are optional.</>,
       <><b>Save tumor.</b> It stays disabled until the required fields are filled. The server then measures the outline again on the scan's own geometry; those are the numbers that are stored.</>,
     ],
     tips: [
       <>A yellow note warns when the outline touches the wall or mediastinum: check it and trim it with Erase.</>,
       <>Outlines under 4 mm get a warning but can still be saved: you decide.</>,
-      <>For a tumor that can't be outlined, <b>Tumor you can't outline › Add tumor</b> lets you type its measurements by hand.</>,
+      <>Can't outline it? <b>Add tumor</b>, under Tumor you can't outline, takes typed measurements.</>,
     ],
   },
   {
