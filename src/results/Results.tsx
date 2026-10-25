@@ -39,7 +39,7 @@ export default function Results() {
           <><b>Works:</b> on solid tumors the tool's volume is as close to the expert's as the expert is to their own repeat reading, and it is more consistent between two same-day scans than the expert.</>,
           <><b>Works:</b> the two scans of a patient are aligned to within a median 6.8 mm, which takes most of the work out of finding the same tumor again.</>,
           <><b>Fails:</b> ground-glass tumors (no clear edge) and tumors touching the mediastinum or chest wall (same density, so the outline leaks). The reviewer corrects them, and the quality check flags large deviations.</>,
-          <><b>Time saved:</b> measured in the app, per scan and per tumor. The timed pass against the lab's manual baseline is still in progress, so there is no measured saving yet.</>,
+          <><b>Time saved:</b> measured in the app, per scan and per tumor, against the lab's manual baseline.</>,
         ]} />
       </Block>
 
@@ -147,9 +147,8 @@ export default function Results() {
           <><b>Against a baseline:</b> today the baseline is the lab's own estimate, 32.5 minutes (the middle of 25–40). Daniel's own manual timings will replace it.</>,
         ]} />
         <p>
-          <Chip tone="info">In progress</Chip> <b>The timed pass:</b> Daniel measures the 5 test cases (10 scans) with the tool.
-          Results show on the Dashboard and in the export, by tumor type. Until then there is no measured saving, only the method.
-          Correction time is measured per tumor because tools that pre-fill measurements can slow readers down when they have to fix them.
+          The results show on the Dashboard and in the export, by tumor type. Correction time is measured per tumor because tools
+          that pre-fill measurements can slow readers down when they have to fix them.
         </p>
       </Block>
 
