@@ -3,7 +3,7 @@ import { Bullets, Card, Chip, Reveal } from '../components/ui';
 
 const PHASES = [
   { when: 'Shipped', title: 'Since the first demo', items: ['Weekly summary email to the Director', 'Assistant for the Director and Admin', 'Quality check before sign-off'] },
-  { when: 'Now', title: 'Handover', items: ["Timed pass with Daniel: time per scan against his manual baseline", 'Lab user testing'] },
+  { when: 'Now', title: 'Handover', items: ['Training session with Daniel and Naomi, using the user guide', 'Lab user testing'] },
   { when: 'Next', title: 'Faster follow-ups', items: ['Carry baseline tumors forward: outlines proposed at the matched spot, one click to accept', 'Manual scan assignment when more reviewers join'] },
   { when: 'Later', title: 'Harder tumors', items: ["A trained model for ground-glass and wall-touching tumors, validated on the lab's own outlined cases", 'More than two scans per patient; solid-component measurement'] },
 ];

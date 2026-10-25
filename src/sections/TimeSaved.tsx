@@ -1,5 +1,5 @@
 import Section from '../components/Section';
-import { Card, Chip, Reveal } from '../components/ui';
+import { Card, Reveal } from '../components/ui';
 
 const HOW = [
   ['Per scan', 'Seconds the scan is on screen, from opening to sign-off. Time in another tab doesn\'t count.'],
@@ -19,17 +19,10 @@ export default function TimeSaved() {
         ))}
       </Reveal>
       <Reveal delay={0.1} className="mt-5">
-        <Card>
-          <h3 className="mb-2 flex items-center gap-3 text-lg font-semibold">The timed pass <Chip tone="info">In progress</Chip></h3>
-          <p>
-            Daniel measures 5 public cases (10 scans) with the tool: typical, small, ground-glass,
-            mediastinum-touching and spiculated. Results land on the Dashboard and in the export, by tumor type.
-          </p>
-          <p className="mt-2 text-sm text-[var(--color-text-faint)]">
-            Literature caution: tools that pre-fill measurements can slow readers when they have to fix them.
-            That's why correction time is measured per tumor, not assumed.
-          </p>
-        </Card>
+        <p className="text-sm text-[var(--color-text-faint)]">
+          Literature caution: tools that pre-fill measurements can slow readers when they have to fix them.
+          That's why correction time is measured per tumor, not assumed.
+        </p>
       </Reveal>
     </Section>
   );

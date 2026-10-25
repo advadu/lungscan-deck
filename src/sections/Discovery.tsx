@@ -6,7 +6,6 @@ const DECISIONS = [
   ['Files', 'DICOM only, accepted by content'],
   ['Data retention', 'Kept for the pilot'],
   ['Suggestions', 'Kept; Daniel decides'],
-  ['Assignment', 'Manual, simple worklist'],
   ['Notifications', 'Weekly email to Naomi; no alerts'],
   ['Outside AI assistants (MCP)', 'Not now'],
 ];
