@@ -1,7 +1,6 @@
-import { useEffect, useState } from 'react';
-import type { ReactNode } from 'react';
-import { ArrowLeft, ExternalLink, KeyRound, LogIn, MonitorPlay } from 'lucide-react';
+import { KeyRound, LogIn, MonitorPlay } from 'lucide-react';
 import { Card, Chip, Shot } from '../components/ui';
+import { A, Block, DocPage, List, Table, code } from '../components/doc';
 
 const APP = 'https://lungscan-research.base44.app';
 
@@ -21,88 +20,15 @@ const TOC = [
   { id: 'help', label: 'If something goes wrong' },
 ];
 
-const A = ({ href, children }: { href: string; children: ReactNode }) => (
-  <a href={href} target="_blank" rel="noreferrer" className="font-medium text-[var(--color-brand)] hover:underline">
-    {children}
-  </a>
-);
-
-function Block({ id, title, children }: { id: string; title: string; children: ReactNode }) {
-  return (
-    <section id={id} className="scroll-mt-24 border-t border-[var(--color-border)] pt-10 first:border-0 first:pt-0">
-      <h2 className="mb-4 text-2xl font-bold tracking-tight">{title}</h2>
-      <div className="space-y-4 text-[16px] leading-relaxed text-[var(--color-text-dim)] [&_b]:text-[var(--color-text)]">{children}</div>
-    </section>
-  );
-}
-
-function List({ items, ordered }: { items: ReactNode[]; ordered?: boolean }) {
-  const Tag = ordered ? 'ol' : 'ul';
-  return (
-    <Tag className={`space-y-2 pl-5 ${ordered ? 'list-decimal' : 'list-disc'} marker:text-[var(--color-brand)]`}>
-      {items.map((it, i) => <li key={i} className="pl-1">{it}</li>)}
-    </Tag>
-  );
-}
-
-function Table({ head, rows }: { head: string[]; rows: ReactNode[][] }) {
-  return (
-    <div className="overflow-x-auto rounded-xl border border-[var(--color-border)] bg-[var(--color-surface)]">
-      <table className="w-full border-collapse text-left text-[15px]">
-        <thead>
-          <tr className="bg-[var(--color-surface-2)]">
-            {head.map((h) => <th key={h} className="px-4 py-2.5 text-xs font-semibold uppercase tracking-wider text-[var(--color-text-dim)]">{h}</th>)}
-          </tr>
-        </thead>
-        <tbody>
-          {rows.map((r, i) => (
-            <tr key={i} className="border-t border-[var(--color-border)]">
-              {r.map((c, j) => <td key={j} className="px-4 py-2.5 align-top text-[var(--color-text)]">{c}</td>)}
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
-  );
-}
-
-const code = (s: string) => <code className="rounded bg-[var(--color-surface-2)] px-1.5 py-0.5 font-mono text-[13px]">{s}</code>;
-
 export default function Guide() {
-  const [active, setActive] = useState(TOC[0].id);
-  useEffect(() => {
-    const root = document.getElementById('guide-scroll');
-    const obs = new IntersectionObserver(
-      (entries) => entries.forEach((e) => e.isIntersecting && setActive(e.target.id)),
-      { root, rootMargin: '-20% 0px -70% 0px' },
-    );
-    TOC.forEach(({ id }) => { const el = document.getElementById(id); if (el) obs.observe(el); });
-    return () => obs.disconnect();
-  }, []);
-
   return (
-    <div id="guide-scroll" className="h-screen overflow-y-auto scroll-smooth">
-      <header className="sticky top-0 z-20 border-b border-[var(--color-border)] bg-[var(--color-bg)]/90 backdrop-blur">
-        <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-5 py-3">
-          <a href="./" className="inline-flex items-center gap-2 text-sm font-medium text-[var(--color-text-dim)] hover:text-[var(--color-brand)]">
-            <ArrowLeft size={16} /> Presentation
-          </a>
-          <span className="hidden text-sm font-semibold sm:block">LungScan Research · How to use it</span>
-          <a href={APP} target="_blank" rel="noreferrer" className="inline-flex items-center gap-1.5 rounded-lg bg-[var(--color-brand)] px-3 py-1.5 text-sm font-semibold text-white hover:opacity-90">
-            Open the app <ExternalLink size={14} />
-          </a>
-        </div>
-      </header>
-
-      <div className="grid-bg">
-        <div className="mx-auto max-w-6xl px-5 pb-10 pt-14">
-          <div className="text-xs font-semibold uppercase tracking-[0.18em] text-[var(--color-brand)]">User guide</div>
-          <h1 className="mt-3 text-4xl font-bold tracking-tight md:text-5xl">How to use LungScan Research</h1>
-          <p className="mt-4 max-w-3xl text-lg text-[var(--color-text-dim)]">
-            A tool that cuts the manual work of finding and measuring lung tumors on CT scans, built on Base44 for the
-            (simulated) Thoracic Oncology Research Lab at Harbor Medical Center. For research use only; it makes no clinical claims.
-          </p>
-          <div className="mt-8 grid gap-4 md:grid-cols-3">
+    <DocPage
+      eyebrow="User guide"
+      title="How to use LungScan Research"
+      lead={<>A tool that cuts the manual work of finding and measuring lung tumors on CT scans, built on Base44 for the (simulated) Thoracic Oncology Research Lab at Harbor Medical Center. For research use only; it makes no clinical claims.</>}
+      toc={TOC}
+      intro={
+        <div className="mt-8 grid gap-4 md:grid-cols-3">
             {[
               { icon: KeyRound, title: '1. Get access', body: <>Email <A href="mailto:advadu@wix.com">advadu@wix.com</A> the Google account to invite. You get the Admin role, so every page is open to you.</> },
               { icon: LogIn, title: '2. Sign in', body: <>Open <A href={APP}>lungscan-research.base44.app</A> and sign in with Google, using the invited account.</> },
@@ -114,23 +40,8 @@ export default function Guide() {
               </Card>
             ))}
           </div>
-        </div>
-      </div>
-
-      <div className="mx-auto grid max-w-6xl grid-cols-[minmax(0,1fr)] gap-10 px-5 py-12 lg:grid-cols-[200px_minmax(0,1fr)]">
-        <nav aria-label="Contents" className="hidden lg:block">
-          <ul className="sticky top-24 space-y-1 text-sm">
-            {TOC.map(({ id, label }) => (
-              <li key={id}>
-                <a href={`#${id}`} className={`block rounded-md px-3 py-1.5 ${active === id ? 'bg-[var(--color-brand-tint)] font-semibold text-[var(--color-brand)]' : 'text-[var(--color-text-dim)] hover:text-[var(--color-text)]'}`}>
-                  {label}
-                </a>
-              </li>
-            ))}
-          </ul>
-        </nav>
-
-        <main className="max-w-3xl space-y-12">
+      }
+    >
           <Block id="getting-started" title="Getting started">
             <p>
               The library holds the public RIDER Lung CT practice set: <b>59 series in 31 patient folders</b>, with 28 patients
@@ -334,12 +245,6 @@ export default function Guide() {
               <><b>The Scanner takes a few seconds to open the first time:</b> it downloads the scan's images once and keeps them in the browser, so later visits are faster.</>,
             ]} />
           </Block>
-        </main>
-      </div>
-
-      <footer className="border-t border-[var(--color-border)] py-8 text-center text-sm text-[var(--color-text-faint)]">
-        LungScan Research · For research use only. No clinical claims. · <a href="./" className="hover:underline">Back to the presentation</a>
-      </footer>
-    </div>
+    </DocPage>
   );
 }

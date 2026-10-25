@@ -6,6 +6,7 @@ const LINKS = [
   ['Live tool', 'lungscan-research.base44.app', 'https://lungscan-research.base44.app'],
   ['Source', 'github.com/advadu/lungscan-research', 'https://github.com/advadu/lungscan-research'],
   ['How to use it', 'Step-by-step guide', './guide.html'],
+  ['Results', 'What works, what fails, time saved', './results.html'],
 ];
 
 export default function Closing() {

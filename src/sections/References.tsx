@@ -35,7 +35,7 @@ const REFS: { icon: LucideIcon; title: string; body: ReactNode }[] = [
   {
     icon: FlaskConical,
     title: 'Results',
-    body: <>In this deck: <Link href="#quality">what works</Link>, <Link href="#failures">what fails</Link> and <Link href="#time-saved">how time saved is measured</Link>. The method is in <code className="text-[13px]">validation/README.md</code>.</>,
+    body: <><Link href="./results.html">Full results</Link>: what works, what fails and how time saved is measured, with the test method. Summary in this deck: <Link href="#quality">quality</Link>, <Link href="#failures">failures</Link>, <Link href="#time-saved">time saved</Link>.</>,
   },
   {
     icon: Database,
