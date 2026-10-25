@@ -8,11 +8,12 @@ export default defineConfig({
   plugins: [react(), tailwindcss()],
   build: {
     rollupOptions: {
-      // Three pages: the deck, the user guide and the results.
+      // Pages: the deck, the user guide, the results and the lab's training.
       input: {
         main: resolve(__dirname, 'index.html'),
         guide: resolve(__dirname, 'guide.html'),
         results: resolve(__dirname, 'results.html'),
+        training: resolve(__dirname, 'training.html'),
       },
     },
   },
