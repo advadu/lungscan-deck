@@ -1,0 +1,89 @@
+@import 'tailwindcss';
+
+@theme {
+  --color-bg: #f6f8fc;
+  --color-bg-elev: #ffffff;
+  --color-surface: #ffffff;
+  --color-surface-2: #eef1f8;
+  --color-border: #dde2ec;
+  --color-border-strong: #c5cdd9;
+  --color-text: #0f1424;
+  --color-text-dim: #4a5568;
+  --color-text-faint: #7a8499;
+  --color-brand: #4338ca;
+  --color-brand-2: #7c3aed;
+  --color-brand-tint: #e0e7ff;
+  --color-good: #1a6b3d;
+  --color-good-tint: #dcf0e3;
+  --color-warn: #9f3a16;
+  --color-warn-tint: #fdece4;
+
+  --font-mono: 'IBM Plex Mono', ui-monospace, monospace;
+  --font-display: 'IBM Plex Sans', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+}
+
+@layer base {
+  html,
+  body,
+  #root {
+    height: 100%;
+    background: var(--color-bg);
+    color: var(--color-text);
+    font-family: var(--font-display);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  body {
+    overflow: hidden;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+}
+
+@layer utilities {
+  .bg-gradient-brand {
+    background-image: linear-gradient(
+      135deg,
+      var(--color-brand) 0%,
+      var(--color-brand-2) 100%
+    );
+  }
+
+  .grid-bg {
+    background-image:
+      radial-gradient(
+        circle at 20% 10%,
+        color-mix(in oklab, var(--color-brand) 18%, transparent) 0%,
+        transparent 35%
+      ),
+      radial-gradient(
+        circle at 80% 90%,
+        color-mix(in oklab, var(--color-brand-2) 18%, transparent) 0%,
+        transparent 40%
+      );
+  }
+
+  .dot-grid {
+    background-image: radial-gradient(
+      color-mix(in oklab, var(--color-border-strong) 80%, transparent) 1px,
+      transparent 1px
+    );
+    background-size: 28px 28px;
+  }
+}
+
+@keyframes float-slow {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(0, -12px, 0);
+  }
+}
+
+.animate-float-slow {
+  animation: float-slow 6s ease-in-out infinite;
+}
