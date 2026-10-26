@@ -10,7 +10,7 @@ const PHASES = [
 
 export default function NextSteps() {
   return (
-    <Section id="next" eyebrow="Next steps" title="What comes next">
+    <Section id="next" title="Next steps">
       <Reveal className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
         {PHASES.map((p) => (
           <Card key={p.when}>

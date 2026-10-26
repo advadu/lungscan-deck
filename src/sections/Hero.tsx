@@ -9,7 +9,7 @@ const META = [
 
 export default function Hero() {
   return (
-    <Section id="hero" eyebrow="Forward Deployed Engineer · Home assignment, part 1" bgClassName="grid-bg">
+    <Section id="hero" bgClassName="grid-bg">
       <div className="absolute inset-0 dot-grid opacity-30" />
       <div className="relative flex flex-1 flex-col justify-center">
         <motion.h1
@@ -45,7 +45,7 @@ export default function Hero() {
             </div>
           ))}
         </motion.div>
-        <p className="mt-10 text-sm text-[var(--color-text-faint)]">Adva Dubovi Avni · October 2026 · For research use only. No clinical claims.</p>
+        <p className="mt-10 text-sm text-[var(--color-text-faint)]">Adva Dubovi Avni · Forward Deployed Engineer home assignment, part 1 · October 2026 · For research use only. No clinical claims.</p>
       </div>
     </Section>
   );

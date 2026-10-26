@@ -3,7 +3,7 @@ import { Bullets, Reveal, Shot } from '../components/ui';
 
 export default function Output() {
   return (
-    <Section id="output" eyebrow="Output" title="Measurements and export">
+    <Section id="output" title="Output">
       <div className="grid items-start gap-8 md:grid-cols-2">
         <Reveal>
           <Shot src="measurements.jpg" label="Measurements" alt="Measurements: one row per tumor per scan with change between scans and CSV export" />

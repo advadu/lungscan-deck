@@ -8,7 +8,7 @@ const row = (name: string, err: string, tone: 'good' | 'warn', label: string) =>
 
 export default function Failures() {
   return (
-    <Section id="failures" eyebrow="Results" title="Where the tool falls short">
+    <Section id="failures" title="Results: limitations">
       <div className="grid items-start gap-8 md:grid-cols-2">
         <Reveal>
           <DataTable

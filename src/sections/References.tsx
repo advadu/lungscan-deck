@@ -46,7 +46,7 @@ const REFS: { icon: LucideIcon; title: string; body: ReactNode }[] = [
 
 export default function References() {
   return (
-    <Section id="references" eyebrow="Deliverables" title="Links and access">
+    <Section id="references" title="Deliverables">
       <Reveal className="grid gap-4 md:grid-cols-3">
         {REFS.map(({ icon: Icon, title, body }) => (
           <Card key={title}>

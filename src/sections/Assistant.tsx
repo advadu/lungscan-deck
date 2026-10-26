@@ -3,7 +3,7 @@ import { Bullets, Reveal, Shot } from '../components/ui';
 
 export default function Assistant() {
   return (
-    <Section id="assistant" eyebrow="Assistant" title="Questions about the lab's data">
+    <Section id="assistant" title="Assistant">
       <div className="grid items-start gap-8 md:grid-cols-2">
         <Reveal>
           <Shot src="assistant.jpg" label="Assistant" alt="The Assistant answering how far along the lab is" />
