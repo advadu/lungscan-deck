@@ -84,7 +84,7 @@ export function DocPage({ eyebrow, title, lead, intro, toc, children }: {
         </div>
       </header>
 
-      <div className="grid-bg">
+      <div>
         <div className="mx-auto max-w-6xl px-5 pb-10 pt-14">
           <div className="text-xs font-semibold uppercase tracking-[0.18em] text-[var(--color-brand)]">{eyebrow}</div>
           <h1 className="mt-3 text-4xl font-bold tracking-tight md:text-5xl">{title}</h1>
