@@ -1,6 +1,7 @@
 import { KeyRound, LogIn, MonitorPlay } from 'lucide-react';
 import { Card, Chip, Shot } from '../components/ui';
-import { A, Block, DocPage, List, Table, code } from '../components/doc';
+import { A, Block, DocPage, List, Table } from '../components/doc';
+import { code } from '../components/code';
 
 const APP = 'https://lungscan-research.base44.app';
 

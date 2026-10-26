@@ -80,24 +80,16 @@ function Page({ id, children }: { id: string; children: ReactNode }) {
 }
 
 export default function Training() {
-  const [tab, setTab] = useState<'learn' | 'test'>('learn');
-  const [lesson, setLesson] = useState(0);
-  const [test, setTest] = useState(0);
-  const [results, setResults] = useState<Record<string, Status>>({});
-  const [notes, setNotes] = useState<Record<string, string>>({});
+  // Start where this browser left off (the page has no server render, so storage is readable here).
+  const [saved] = useState(read);
+  const [tab, setTab] = useState<'learn' | 'test'>(saved.tab || 'learn');
+  const [lesson, setLesson] = useState(typeof saved.lesson === 'number' && saved.lesson < LESSONS.length ? saved.lesson : 0);
+  const [test, setTest] = useState(typeof saved.test === 'number' && saved.test < ALL.length ? saved.test : 0);
+  const [results, setResults] = useState<Record<string, Status>>(saved.results || {});
+  const [notes, setNotes] = useState<Record<string, string>>(saved.notes || {});
   const [copied, setCopied] = useState(false);
-  const [loaded, setLoaded] = useState(false);
+  const loaded = true;
   const mainRef = useRef<HTMLElement>(null);
-
-  useEffect(() => {
-    const s = read();
-    if (s.tab) setTab(s.tab);
-    if (typeof s.lesson === 'number' && s.lesson < LESSONS.length) setLesson(s.lesson);
-    if (typeof s.test === 'number' && s.test < ALL.length) setTest(s.test);
-    setResults(s.results || {});
-    setNotes(s.notes || {});
-    setLoaded(true);
-  }, []);
   useEffect(() => {
     if (!loaded) return;
     try { localStorage.setItem(KEY, JSON.stringify({ results, notes, tab, lesson, test })); } catch { /* storage blocked: kept for this visit */ }

@@ -1,5 +1,6 @@
 import { Chip, Stat } from '../components/ui';
-import { A, Block, DocPage, List, Table, code } from '../components/doc';
+import { A, Block, DocPage, List, Table } from '../components/doc';
+import { code } from '../components/code';
 
 const TOC = [
   { id: 'summary', label: 'Summary' },
