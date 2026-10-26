@@ -21,7 +21,7 @@ export default function Section({
 }: SectionProps) {
   // Slides with a title show their number above it, where a label would go.
   const n = SECTIONS.findIndex((x) => x.id === id) + 1;
-  if (!eyebrow && title && n > 0) eyebrow = `${n}.`;
+  if (!eyebrow && title && n > 0) eyebrow = String(n);
   return (
     <section
       id={id}
