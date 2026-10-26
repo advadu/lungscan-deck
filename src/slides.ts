@@ -1,0 +1,20 @@
+// The deck's slides in order: ids, dot labels, and the number shown above each title.
+export const SECTIONS = [
+  { id: 'hero', label: 'Intro' },
+  { id: 'references', label: 'Deliverables' },
+  { id: 'problem', label: 'The problem' },
+  { id: 'discovery', label: 'Discovery' },
+  { id: 'workflow', label: 'The workflow' },
+  { id: 'scanner', label: 'The scanner' },
+  { id: 'compare', label: 'Comparing scans' },
+  { id: 'quality-check', label: 'Quality check' },
+  { id: 'output', label: 'Output' },
+  { id: 'assistant', label: 'Assistant' },
+  { id: 'lab-admin', label: 'Lab settings' },
+  { id: 'quality', label: 'Quality' },
+  { id: 'failures', label: 'What fails' },
+  { id: 'time-saved', label: 'Time saved' },
+  { id: 'base44-feedback', label: 'Base44 feedback' },
+  { id: 'next', label: 'Next steps' },
+  { id: 'closing', label: 'Questions' },
+];

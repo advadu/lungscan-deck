@@ -1,5 +1,6 @@
 import type { ReactNode } from 'react';
 import { motion } from 'framer-motion';
+import { SECTIONS } from '../slides';
 
 type SectionProps = {
   id: string;
@@ -18,6 +19,9 @@ export default function Section({
   subtitle,
   bgClassName = '',
 }: SectionProps) {
+  // Slides with a title show their number above it, where a label would go.
+  const n = SECTIONS.findIndex((x) => x.id === id) + 1;
+  if (!eyebrow && title && n > 0) eyebrow = `${String(n).padStart(2, '0')} / ${SECTIONS.length}`;
   return (
     <section
       id={id}

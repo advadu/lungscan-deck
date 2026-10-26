@@ -17,26 +17,9 @@ import Base44Feedback from './sections/Base44Feedback';
 import NextSteps from './sections/NextSteps';
 import Closing from './sections/Closing';
 import ProgressDots from './components/ProgressDots';
+import { SECTIONS } from './slides';
 
-const SECTIONS = [
-  { id: 'hero', label: 'Intro' },
-  { id: 'references', label: 'Deliverables' },
-  { id: 'problem', label: 'The problem' },
-  { id: 'discovery', label: 'Discovery' },
-  { id: 'workflow', label: 'The workflow' },
-  { id: 'scanner', label: 'The scanner' },
-  { id: 'compare', label: 'Comparing scans' },
-  { id: 'quality-check', label: 'Quality check' },
-  { id: 'output', label: 'Output' },
-  { id: 'assistant', label: 'Assistant' },
-  { id: 'lab-admin', label: 'Lab settings' },
-  { id: 'quality', label: 'Quality' },
-  { id: 'failures', label: 'What fails' },
-  { id: 'time-saved', label: 'Time saved' },
-  { id: 'base44-feedback', label: 'Base44 feedback' },
-  { id: 'next', label: 'Next steps' },
-  { id: 'closing', label: 'Questions' },
-];
+
 
 const NEXT_KEYS = ['ArrowRight', 'ArrowDown', 'PageDown', ' '];
 const PREV_KEYS = ['ArrowLeft', 'ArrowUp', 'PageUp'];
@@ -127,12 +110,6 @@ export default function App() {
         active={active}
         onSelect={scrollTo}
       />
-      <div
-        aria-live="polite"
-        className="pointer-events-none fixed bottom-5 right-6 z-50 rounded-full border border-[var(--color-border)] bg-[var(--color-surface)]/80 px-3 py-1 font-mono text-xs tabular-nums text-[var(--color-text-dim)] backdrop-blur"
-      >
-        {active + 1} / {SECTIONS.length}
-      </div>
     </>
   );
 }
