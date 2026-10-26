@@ -105,7 +105,7 @@ export function DocPage({ eyebrow, title, lead, intro, toc, children }: {
             ))}
           </ul>
         </nav>
-        <main className="max-w-3xl space-y-12">{children}</main>
+        <main className="min-w-0 space-y-12">{children}</main>
       </div>
 
       <footer className="border-t border-[var(--color-border)] py-8 text-center text-sm text-[var(--color-text-faint)]">
