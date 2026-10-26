@@ -3,7 +3,7 @@ import { Bullets, Card, Reveal, Stat } from '../components/ui';
 
 export default function Problem() {
   return (
-    <Section id="problem" eyebrow="The problem" title="Measuring tumors by hand is the lab's bottleneck">
+    <Section id="problem" eyebrow="The problem" title="Measuring tumors by hand takes too long">
       <Reveal className="grid gap-4 md:grid-cols-4">
         <Stat label="Manual time per scan" value="25–40" unit="min" note="Image by image, by hand" />
         <Stat label="Scans per week" value="12–15" note="1–2 tumors per scan" />

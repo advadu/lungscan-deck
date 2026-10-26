@@ -3,7 +3,7 @@ import { Reveal, Shot } from '../components/ui';
 
 export default function LabAdmin() {
   return (
-    <Section id="lab-admin" eyebrow="Built for the lab's process" title="Weekly summary, roles and permissions">
+    <Section id="lab-admin" eyebrow="Lab settings" title="Weekly summary, roles and permissions">
       <div className="grid items-start gap-6 md:grid-cols-2">
         <Reveal>
           <Shot src="emails.jpg" label="Settings › Emails" alt="Emails: the scheduled weekly summary" />

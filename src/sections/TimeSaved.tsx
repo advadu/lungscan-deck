@@ -9,7 +9,7 @@ const HOW = [
 
 export default function TimeSaved() {
   return (
-    <Section id="time-saved" eyebrow="Results · time saved" title="How time saved is measured">
+    <Section id="time-saved" eyebrow="Results" title="Measuring time saved">
       <Reveal className="grid gap-4 md:grid-cols-3">
         {HOW.map(([t, d]) => (
           <Card key={t}>

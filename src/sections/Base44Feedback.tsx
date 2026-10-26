@@ -5,7 +5,7 @@ const c = (s: string) => <code className="rounded bg-[var(--color-surface-2)] px
 
 export default function Base44Feedback() {
   return (
-    <Section id="base44-feedback" eyebrow="Stress-testing Base44" title="What I'd bring back to Product and Engineering">
+    <Section id="base44-feedback" eyebrow="Base44 feedback" title="Issues I hit on the platform">
       <Reveal>
         <DataTable
           head={['Found', 'Impact', 'Suggestion']}

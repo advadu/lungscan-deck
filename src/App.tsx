@@ -13,8 +13,6 @@ import Quality from './sections/Quality';
 import Failures from './sections/Failures';
 import TimeSaved from './sections/TimeSaved';
 import Output from './sections/Output';
-import Architecture from './sections/Architecture';
-import FieldFix from './sections/FieldFix';
 import Base44Feedback from './sections/Base44Feedback';
 import NextSteps from './sections/NextSteps';
 import Closing from './sections/Closing';
@@ -35,8 +33,6 @@ const SECTIONS = [
   { id: 'quality', label: 'Quality' },
   { id: 'failures', label: 'What fails' },
   { id: 'time-saved', label: 'Time saved' },
-  { id: 'architecture', label: 'Architecture' },
-  { id: 'field-fix', label: 'Found in the field' },
   { id: 'base44-feedback', label: 'Base44 feedback' },
   { id: 'next', label: 'Next steps' },
   { id: 'closing', label: 'Questions' },
@@ -122,8 +118,6 @@ export default function App() {
         <Quality />
         <Failures />
         <TimeSaved />
-        <Architecture />
-        <FieldFix />
         <Base44Feedback />
         <NextSteps />
         <Closing />

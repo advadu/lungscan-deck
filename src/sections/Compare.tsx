@@ -3,7 +3,7 @@ import { Reveal, Shot, Stat } from '../components/ui';
 
 export default function Compare() {
   return (
-    <Section id="compare" eyebrow="Aimed at the biggest pain" title="The other scan follows the tumor">
+    <Section id="compare" eyebrow="Follow-up scans" title="Finding the same tumor on both scans">
       <div className="grid items-start gap-8 md:grid-cols-2">
         <Reveal>
           <Shot src="compare.jpg" label="Compare with the follow-up" alt="Baseline and follow-up side by side, the follow-up marking the matching position" />

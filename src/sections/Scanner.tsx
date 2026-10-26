@@ -3,7 +3,7 @@ import { Bullets, Reveal, Shot } from '../components/ui';
 
 export default function Scanner() {
   return (
-    <Section id="scanner" eyebrow="The scanner" title="Click, check, correct, sign off">
+    <Section id="scanner" eyebrow="The scanner" title="Measuring a tumor">
       <div className="grid items-start gap-8 md:grid-cols-2">
         <Reveal>
           <Shot src="scanner.jpg" label="Scanner" alt="Scanner: a tumor outlined in 3D with long and short axes and its measurements" />

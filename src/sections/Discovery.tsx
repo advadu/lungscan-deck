@@ -12,7 +12,7 @@ const DECISIONS = [
 
 export default function Discovery() {
   return (
-    <Section id="discovery" eyebrow="Discovery" title="I started with the lab's workflow, not with the code">
+    <Section id="discovery" eyebrow="Discovery" title="What I learned from the lab">
       <div className="grid gap-6 md:grid-cols-2">
         <Reveal>
           <blockquote className="mb-6 border-l-4 border-[var(--color-brand)] pl-5 text-lg md:text-xl">

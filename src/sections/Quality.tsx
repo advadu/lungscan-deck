@@ -5,7 +5,7 @@ const n = (s: string) => <span className="font-mono tabular-nums">{s}</span>;
 
 export default function Quality() {
   return (
-    <Section id="quality" eyebrow="Results · quality" title="As accurate as the expert's own repeat, and more consistent">
+    <Section id="quality" eyebrow="Results" title="Measurement accuracy">
       <Reveal>
         <DataTable
           head={['Measure (public RIDER scans)', 'Tool', 'Reference']}

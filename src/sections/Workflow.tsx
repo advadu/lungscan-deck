@@ -12,7 +12,7 @@ const STEPS = [
 
 export default function Workflow() {
   return (
-    <Section id="workflow" eyebrow="The solution" title="One flow, from a folder of scans to the lab's spreadsheet">
+    <Section id="workflow" eyebrow="The workflow" title="From upload to export">
       <Reveal className="grid grid-cols-2 gap-3 md:grid-cols-6">
         {STEPS.map((s, i) => (
           <div key={i} className="rounded-xl border border-[var(--color-border)] bg-[var(--color-surface)] p-3 text-sm">
