@@ -73,7 +73,7 @@ export function DocPage({ eyebrow, title, lead, intro, toc, children }: {
   return (
     <div id="doc-scroll" className="h-screen overflow-y-auto scroll-smooth">
       <header className="sticky top-0 z-20 border-b border-[var(--color-border)] bg-[var(--color-bg)]/90 backdrop-blur">
-        <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-5 py-3">
+        <div className="flex w-full items-center justify-between gap-4 px-5 py-3 lg:px-10">
           <a href="./" className="inline-flex items-center gap-2 text-sm font-medium text-[var(--color-text-dim)] hover:text-[var(--color-brand)]">
             <ArrowLeft size={16} /> Presentation
           </a>
@@ -85,7 +85,7 @@ export function DocPage({ eyebrow, title, lead, intro, toc, children }: {
       </header>
 
       <div>
-        <div className="mx-auto max-w-6xl px-5 pb-10 pt-14">
+        <div className="w-full px-5 pb-10 pt-14 lg:px-10">
           <div className="text-xs font-semibold uppercase tracking-[0.18em] text-[var(--color-brand)]">{eyebrow}</div>
           <h1 className="mt-3 text-4xl font-bold tracking-tight md:text-5xl">{title}</h1>
           <p className="mt-4 max-w-3xl text-lg text-[var(--color-text-dim)]">{lead}</p>
@@ -93,7 +93,7 @@ export function DocPage({ eyebrow, title, lead, intro, toc, children }: {
         </div>
       </div>
 
-      <div className="mx-auto grid max-w-6xl grid-cols-[minmax(0,1fr)] gap-10 px-5 py-12 lg:grid-cols-[200px_minmax(0,1fr)]">
+      <div className="grid w-full grid-cols-[minmax(0,1fr)] gap-10 px-5 py-12 lg:px-10 lg:grid-cols-[200px_minmax(0,1fr)]">
         <nav aria-label="Contents" className="hidden lg:block">
           <ul className="sticky top-24 space-y-1 text-sm">
             {toc.map(({ id, label }) => (
