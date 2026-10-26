@@ -127,6 +127,12 @@ export default function App() {
         active={active}
         onSelect={scrollTo}
       />
+      <div
+        aria-live="polite"
+        className="pointer-events-none fixed bottom-5 right-6 z-50 rounded-full border border-[var(--color-border)] bg-[var(--color-surface)]/80 px-3 py-1 font-mono text-xs tabular-nums text-[var(--color-text-dim)] backdrop-blur"
+      >
+        {active + 1} / {SECTIONS.length}
+      </div>
     </>
   );
 }
