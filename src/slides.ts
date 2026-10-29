@@ -7,7 +7,7 @@ export const SECTIONS = [
   { id: 'workflow', label: 'The workflow' },
   { id: 'scanner', label: 'The scanner' },
   { id: 'compare', label: 'Comparing scans' },
-  { id: 'quality-check', label: 'Quality check' },
+  { id: 'quality-check', label: 'Quality flags' },
   { id: 'output', label: 'Output' },
   { id: 'assistant', label: 'Assistant' },
   { id: 'lab-admin', label: 'Lab settings' },

@@ -3,7 +3,7 @@ import { Bullets, Chip, Reveal, Shot } from '../components/ui';
 
 export default function QualityCheck() {
   return (
-    <Section id="quality-check" title="Sign-off">
+    <Section id="quality-check" title="Quality flags">
       <div className="grid items-start gap-8 md:grid-cols-2">
         <Reveal>
           <Shot src="quality-flags.jpg" label="Scanner" alt="A warning icon next to a tumor, listing what is missing" />
