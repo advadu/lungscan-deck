@@ -5,7 +5,7 @@ import { Bullets, Reveal } from '../components/ui';
 // and only then the data is stored. Writing straight to the tables is blocked by their access rules.
 const CHECKS = [
   'Signed in?',
-  'Input well-formed? (outline inside the scan)',
+  'Valid outline? (inside the scan)',
   'Allowed? (Reviewer or Admin)',
   'Scan still open? (not signed off)',
   'Measure again on the stored scan',
