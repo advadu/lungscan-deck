@@ -11,6 +11,7 @@ export const SECTIONS = [
   { id: 'output', label: 'Output' },
   { id: 'assistant', label: 'Assistant' },
   { id: 'lab-admin', label: 'Lab settings' },
+  { id: 'data-model', label: 'Data model' },
   { id: 'quality', label: 'Quality' },
   { id: 'failures', label: 'What fails' },
   { id: 'time-saved', label: 'Time saved' },
