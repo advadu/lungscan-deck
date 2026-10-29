@@ -5,6 +5,7 @@ import QualityCheck from './sections/QualityCheck';
 import Assistant from './sections/Assistant';
 import LabAdmin from './sections/LabAdmin';
 import DataModel from './sections/DataModel';
+import ServerPath from './sections/ServerPath';
 import Problem from './sections/Problem';
 import Discovery from './sections/Discovery';
 import Workflow from './sections/Workflow';
@@ -100,6 +101,7 @@ export default function App() {
         <Assistant />
         <LabAdmin />
         <DataModel />
+        <ServerPath />
         <Quality />
         <Failures />
         <TimeSaved />
